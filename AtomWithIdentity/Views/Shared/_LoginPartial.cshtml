@@ -1,0 +1,63 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity
+@using AtomWithIdentity.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+<div class="navbar-nav col-md-12 col-sm-12">
+    <div class="navLinksLogin">
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </div>
+
+    @*<li class="nav-item">
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+    </li>
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>*@
+    </div>
+}
+else
+{
+
+    <div class="navLinks">
+        <div class="signinoutLink">
+            <a style="padding-right:10px; border-right: 2px solid #42a5ff;" id="register" asp-area="Identity" asp-page="/Account/Login">Signin   </a>
+            <a style="padding-left:10px;" id="login" asp-area="Identity" asp-page="/Account/Register">Signup</a>
+        </div>
+
+        <ul class="navbar-nav col-md-12 col-sm-12">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="HealthNews">HEALTH NEWS</a>
+            </li>
+
+
+        </ul>
+    </div>
+}
